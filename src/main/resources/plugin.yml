@@ -1,0 +1,18 @@
+name: OnlineReward
+version: '${project.version}'
+main: top.yzljc.onlineReward.OnlineReward
+api-version: '1.21'
+authors: [ YZ_Ljc_ ]
+description: Online time reward plugin with SQLite storage
+website: www.yzljc.top
+
+commands:
+  onlinereward:
+    description: 在线奖励插件主命令
+    aliases: [oreward, orw]
+    permission: onlinereward.admin
+
+permissions:
+  onlinereward.admin:
+    description: 在线奖励插件管理权限
+    default: op

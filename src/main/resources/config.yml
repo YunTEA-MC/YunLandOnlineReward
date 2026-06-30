@@ -1,0 +1,131 @@
+# OnlineReward 插件配置文件
+# 所有文本使用 MiniMessage 格式: https://docs.advntr.dev/minimessage/format.html
+
+# ──────────────────────────────────────
+# 数据库设置
+# ──────────────────────────────────────
+database:
+  # SQLite 数据库文件名（存放在插件数据目录）
+  file: "onlinereward.db"
+
+# ──────────────────────────────────────
+# 数据存储设置
+# ──────────────────────────────────────
+# 每隔多少分钟将缓存数据刷入 SQLite 数据库
+save-interval: 5
+
+# 每隔多少秒检查一次玩家是否符合奖励条件
+check-interval: 60
+
+# ──────────────────────────────────────
+# 奖励重置模式
+# "daily"  - 每日重置（每日在线时长单独结算）
+# "weekly" - 每周重置
+# "never"  - 永不重置（累计总时长）
+# ──────────────────────────────────────
+reward-reset: "daily"
+
+# ──────────────────────────────────────
+# 数据清理
+# 自动删除长期未上线玩家的数据
+# ──────────────────────────────────────
+data-cleanup:
+  # 保留多少天内的玩家数据
+  keep-days: 30
+
+# ──────────────────────────────────────
+# AFK 挂机检测
+# 挂机状态下不会累计在线时长，也不会发放奖励
+# ──────────────────────────────────────
+afk:
+  # 是否启用挂机检测
+  enabled: true
+  # 玩家多少秒无操作后判定为挂机
+  idle-timeout: 300
+
+# ──────────────────────────────────────
+# 奖励定义
+# ──────────────────────────────────────
+# 每个奖励以唯一标识符作为键名。
+#
+# 字段说明:
+#   time       - 达到奖励所需的在线时长（秒）
+#   commands   - 以控制台身份执行的命令（支持占位符）
+#   messages   - 发送给玩家的消息（MiniMessage 格式，支持占位符）
+#   permission - （可选）领取此奖励所需的权限
+#   repeatable - （可选）设为 true 则达到时间倍数时可重复领取
+#
+# 可用占位符:
+#   %player%      - 玩家名称
+#   %time%        - 奖励所需时长（已格式化）
+#   %reward_key%  - 奖励标识符
+#   %total_time%  - 玩家累计总在线时长
+#   %period_time% - 当前周期（今日/本周）在线时长
+# ──────────────────────────────────────
+rewards:
+
+  "30分钟":
+    time: 1800
+    commands:
+      - "eco give %player% 100"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>100 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+
+  "1小时":
+    time: 3600
+    commands:
+      - "eco give %player% 200"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>200 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+
+  "2小时":
+    time: 7200
+    commands:
+      - "eco give %player% 300"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>300 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+
+  "3小时":
+    time: 10800
+    commands:
+      - "eco give %player% 500"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>500 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+
+  "5小时":
+    time: 18000
+    commands:
+      - "eco give %player% 800"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>800 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+
+  "8小时":
+    time: 28800
+    commands:
+      - "eco give %player% 1000"
+    messages:
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
+      - "<gold>🎁 在线奖励</gold>"
+      - "<gray>你已在线 </gray><yellow>%time%</yellow><gray>，领取了一份奖励！</gray>"
+      - "<gray>奖励: </gray><gold>1000 金币</gold>"
+      - "<green>━━━━━━━━━━━━━━━━━━━━━━</green>"
